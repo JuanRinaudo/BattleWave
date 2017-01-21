@@ -6,7 +6,6 @@ public class CharacterShoot : MonoBehaviour {
     
     public GameObject bulletObject;
     public GameObject bulletPool;
-    public GameObject shootPoint;
     private List<GameObject> poolBullets;
 
     public float timeToShoot;
@@ -24,8 +23,9 @@ public class CharacterShoot : MonoBehaviour {
         {
             GameObject bullet = getBullet();
             bullet.transform.parent = bulletPool.transform;
-            bullet.transform.position = shootPoint.transform.position;
+            bullet.transform.position = transform.position;
             bullet.transform.eulerAngles = transform.eulerAngles;
+            bullet.GetComponent<BulletCollision>().ResetHits();
             bullet.active = true;
             shootTimer += timeToShoot;
         }
