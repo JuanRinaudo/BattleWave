@@ -15,6 +15,8 @@ public class GameData : MonoBehaviour {
 	public static int player1Health = 3;
 	public static int player2Health = 3;
 
+	public static float time;
+
     public static bool roundOver;
     public static bool player1Won;
     public static bool player2Won;
