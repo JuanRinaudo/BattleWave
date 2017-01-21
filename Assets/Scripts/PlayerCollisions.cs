@@ -23,7 +23,11 @@ public class PlayerCollisions : MonoBehaviour {
                 if (gameObject.tag == "Player1" && collision.gameObject.tag == "Bullets1") { return; }
                 if (gameObject.tag == "Player2" && collision.gameObject.tag == "Bullets2") { return; }
             }
+
             Destroy(gameObject);
+
+            if (gameObject.tag == "Player1") { GameManager.instance.onPlayer1Death(); }
+            if (gameObject.tag == "Player2") { GameManager.instance.onPlayer2Death(); }
         }
     }
 }
