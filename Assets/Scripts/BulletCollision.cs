@@ -36,5 +36,56 @@ public class BulletCollision : MonoBehaviour {
                 gameObject.SetActive(false);
             }
         }
+        if (this.gameObject.tag == "Bullets1")
+        {
+            if (collision.gameObject.tag == "Shield2")
+            {
+                CalculateNormal calculateNormal = collision.gameObject.GetComponent<CalculateNormal>();
+                bulletMovement.movementDelta = (2 * Vector2.Dot(bulletMovement.movementDelta, calculateNormal.normal) * calculateNormal.normal) - bulletMovement.movementDelta;
+
+                hitCounter++;
+                if (hitCounter > collisionHits)
+                {
+                    gameObject.SetActive(false);
+                }
+            }
+            if ((collision.gameObject.tag == "Shield1") && (hitCounter != 0))
+            {
+                CalculateNormal calculateNormal = collision.gameObject.GetComponent<CalculateNormal>();
+                bulletMovement.movementDelta = (2 * Vector2.Dot(bulletMovement.movementDelta, calculateNormal.normal) * calculateNormal.normal) - bulletMovement.movementDelta;
+
+                hitCounter++;
+                if (hitCounter > collisionHits)
+                {
+                    gameObject.SetActive(false);
+                }
+            }
+        }
+        if (this.gameObject.tag == "Bullets2")
+        {
+            if (collision.gameObject.tag == "Shield1")
+            {
+                CalculateNormal calculateNormal = collision.gameObject.GetComponent<CalculateNormal>();
+                bulletMovement.movementDelta = (2 * Vector2.Dot(bulletMovement.movementDelta, calculateNormal.normal) * calculateNormal.normal) - bulletMovement.movementDelta;
+
+                hitCounter++;
+                if (hitCounter > collisionHits)
+                {
+                    gameObject.SetActive(false);
+                }
+            }
+            if ((collision.gameObject.tag == "Shield2") && (hitCounter != 0))
+            {
+                CalculateNormal calculateNormal = collision.gameObject.GetComponent<CalculateNormal>();
+                bulletMovement.movementDelta = (2 * Vector2.Dot(bulletMovement.movementDelta, calculateNormal.normal) * calculateNormal.normal) - bulletMovement.movementDelta;
+
+                hitCounter++;
+                if (hitCounter > collisionHits)
+                {
+                    gameObject.SetActive(false);
+                }
+            }
+        }
+
     }
 }
