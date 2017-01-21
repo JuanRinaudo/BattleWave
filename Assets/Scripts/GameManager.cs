@@ -65,13 +65,10 @@ public class GameManager : MonoBehaviour {
             SceneManager.LoadScene(scene, LoadSceneMode.Single);
         } else
         {
-            if (GameData.player1Lives == 0) ;
-            //gano el player2
-            else if (GameData.player2Lives == 0) ;
-            // gano el player 1
-            else 
-                //error programaron con el culo
-
+            if (GameData.player1Lives == 0) 
+                player2WinText.text = "Player2 Wins!";
+            else if (GameData.player2Lives == 0) 
+                player1WinText.text = "Player1 Wins!";
 
                 GameData.player1RoundWins = 0;
             GameData.player2RoundWins = 0;
