@@ -11,8 +11,10 @@ public class GameData : MonoBehaviour {
     public static int player1Lives = 4;
     public static int player2Lives = 4;
     public static int playerLives = 4;
+    public static int player1RoundWins = 0;
+    public static int player2RoundWins = 0;
 
-	public static int player1Health = 3;
+    public static int player1Health = 3;
 	public static int player2Health = 3;
 
 	public static float time;

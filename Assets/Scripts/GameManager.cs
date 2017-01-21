@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
 
-	// Use this for initialization
-	void Start () {
+    public Text player1WinText;
+    public Text player2WinText;
+
+    // Use this for initialization
+    void Start () {
         instance = this;
         
         GameData.roundOver = false;
@@ -25,6 +29,7 @@ public class GameManager : MonoBehaviour {
     {
         GameData.player2Won = true;
         GameData.player1Lives--;
+        GameData.player2RoundWins++;
         tryToResetStage();
     }
 
@@ -32,12 +37,16 @@ public class GameManager : MonoBehaviour {
     {
         GameData.player1Won = true;
         GameData.player2Lives--;
+        GameData.player1RoundWins++;
         tryToResetStage();
     }
 
     private void tryToResetStage()
     {
-        if(GameData.player1Lives > 0 && GameData.player2Lives > 0)
+        Debug.Log(GameData.player1Lives);
+        Debug.Log(GameData.player2Lives);
+
+        if (GameData.player1Lives > 0 && GameData.player2Lives > 0)
         {
             GameData.gameRound++;
 			GameData.player1Health = 3;
@@ -46,6 +55,16 @@ public class GameManager : MonoBehaviour {
             SceneManager.LoadScene(scene, LoadSceneMode.Single);
         } else
         {
+            if (GameData.player1Lives == 0) ;
+            //gano el player2
+            else if (GameData.player2Lives == 0) ;
+            // gano el player 1
+            else 
+                //error programaron con el culo
+
+
+                GameData.player1RoundWins = 0;
+            GameData.player2RoundWins = 0;
             SceneManager.LoadScene(0, LoadSceneMode.Single);
         }
     }
