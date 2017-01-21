@@ -12,8 +12,8 @@ public class PlayerLook : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(transform.position);
-        Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        //Debug.Log(transform.position);
+        //Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         float angle = Vector2.Angle(
             new Vector2(1, 0),
@@ -24,22 +24,22 @@ public class PlayerLook : MonoBehaviour {
             angle += 180;
         }
 
-        Debug.Log(angle);
+        //Debug.Log(angle);
         if ((angle > 0 && angle < 45) || (angle > 180 && angle < 225))
         {
-            Debug.Log("Right");
+            //Debug.Log("Right");
         }
         if(angle > 45 && angle < 135)
         {
-            Debug.Log("Top");
+            //Debug.Log("Top");
         }
         if((angle > 135 && angle < 180) || (angle > 315 && angle < 360))
         {
-            Debug.Log("Left");
+            //Debug.Log("Left");
         }
         if(angle < 315 && angle > 235)
         {
-            Debug.Log("Bottom");
+            //Debug.Log("Bottom");
         }
 	}
 }
