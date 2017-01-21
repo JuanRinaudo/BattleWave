@@ -21,4 +21,7 @@ public class GameData : MonoBehaviour {
     public static bool player1Won;
     public static bool player2Won;
 
+    public static bool gameRunning;
+    public static float gameStartTimer;
+
 }

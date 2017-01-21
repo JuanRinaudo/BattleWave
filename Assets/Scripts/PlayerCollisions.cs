@@ -28,6 +28,9 @@ public class PlayerCollisions : MonoBehaviour {
                 if (gameObject.tag == "Player2" && collision.gameObject.tag == "Bullets2") { return; }
             }
 
+            if (gameObject.tag == "Player1") { GameData.player1Health--; }
+            else { GameData.player2Health--; }
+
             if (gameObject.tag == "Player1") { life = GameData.player1Health; }
             else { life = GameData.player2Health; }
 
@@ -37,12 +40,6 @@ public class PlayerCollisions : MonoBehaviour {
                 if (gameObject.tag == "Player1") { GameManager.instance.onPlayer1Death(); }
                 if (gameObject.tag == "Player2") { GameManager.instance.onPlayer2Death(); }
             }
-            else
-            {
-                if (gameObject.tag == "Player1") { GameData.player1Health--; }
-                else { GameData.player2Health--; }
-            }
-
         }
     }
 }
