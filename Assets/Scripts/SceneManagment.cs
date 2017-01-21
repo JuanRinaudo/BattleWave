@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagment : MonoBehaviour {
 
-	public void loadMenu() {
-
-		SceneManager.LoadScene ("MainState");
+	public void loadMenu()
+    {
+        GameData.player1Lives = GameData.playerLives;
+        GameData.player2Lives = GameData.playerLives;
+        SceneManager.LoadScene ("MainState");
 	}
 
 	// Use this for initialization
