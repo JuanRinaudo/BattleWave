@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerLook : MonoBehaviour {
-
-    [HideInInspector]
+    
     public Vector2 lookVector = new Vector2(1, 0);
 
     private void Awake()

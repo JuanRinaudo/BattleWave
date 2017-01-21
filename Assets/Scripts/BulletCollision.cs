@@ -29,6 +29,7 @@ public class BulletCollision : MonoBehaviour {
         if(collision.gameObject.tag == "Walls") {
             reflectCollision(collision);
         }
+
         if (this.gameObject.tag == "Bullets1")
         {
             if (collision.gameObject.tag == "Shield2" || ((collision.gameObject.tag == "Shield1") && (hitCounter != 0)))

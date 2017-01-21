@@ -18,18 +18,20 @@ public class CharacterShoot : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        shootTimer -= Time.deltaTime;
-        if(shootTimer <= 0)
-        {
-            GameObject bullet = getBullet();
-            bullet.transform.parent = bulletPool.transform;
-            bullet.transform.position = transform.position;
-            bullet.transform.eulerAngles = transform.eulerAngles;
-            bullet.GetComponent<BulletCollision>().ResetHits();
-            bullet.active = true;
-            shootTimer += timeToShoot;
+        if(GameData.gameRunning) {
+            shootTimer -= Time.deltaTime;
+            if(shootTimer <= 0)
+            {
+                GameObject bullet = getBullet();
+                bullet.transform.parent = bulletPool.transform;
+                bullet.transform.position = transform.position;
+                bullet.transform.eulerAngles = transform.eulerAngles;
+                bullet.GetComponent<BulletCollision>().ResetHits();
+                bullet.active = true;
+                shootTimer += timeToShoot;
+            }
         }
-	}
+    }
 
     GameObject getBullet()
     {

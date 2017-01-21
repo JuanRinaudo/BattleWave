@@ -14,7 +14,10 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         instance = this;
-        
+
+        GameData.gameStartTimer = 3;
+        GameData.gameRunning = false;
+
         GameData.roundOver = false;
         GameData.player1Won = false;
         GameData.player2Won = false;
@@ -22,7 +25,14 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if(!GameData.gameRunning)
+        {
+            GameData.gameStartTimer -= Time.deltaTime;
+            if(GameData.gameStartTimer <= 0)
+            {
+                GameData.gameRunning = true;
+            }
+        }
 	}
 
     public void onPlayer1Death()
