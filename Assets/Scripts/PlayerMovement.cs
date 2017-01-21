@@ -13,21 +13,30 @@ public class PlayerMovement : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        if(player == 1) {
-		    if (Input.GetKey ("right"))
-			    transform.Translate (translateSpeed*Time.deltaTime,0,0);
-
-		    if (Input.GetKey ("left")) 
-			    transform.Translate (-translateSpeed*Time.deltaTime,0,0);
-
-		    if(Input.GetKey("up")) 
-			    transform.Translate (0,translateSpeed*Time.deltaTime,0);
-
-		    if(Input.GetKey("down")) 
-			    transform.Translate (0,-translateSpeed*Time.deltaTime,0);
-        } else
+	void Update ()
+    {
+        float speed = translateSpeed * Time.deltaTime;
+        if (player == 1)
         {
+            //Debug.Log("JOYSTICK1: " + new Vector2(Input.GetAxis("Joystick1AxisX"), Input.GetAxis("Joystick1AxisY")));
+            transform.Translate(Input.GetAxis("Joystick1AxisX") * speed, Input.GetAxis("Joystick1AxisY") * speed, 0);
+
+            if (Input.GetKey("right"))
+                transform.Translate(translateSpeed * Time.deltaTime, 0, 0);
+
+            if (Input.GetKey("left"))
+                transform.Translate(-translateSpeed * Time.deltaTime, 0, 0);
+
+            if (Input.GetKey("up"))
+                transform.Translate(0, translateSpeed * Time.deltaTime, 0);
+
+            if (Input.GetKey("down"))
+                transform.Translate(0, -translateSpeed * Time.deltaTime, 0);
+    } else
+        {
+            //Debug.Log("JOYSTICK2: " + new Vector2(Input.GetAxis("Joystick2AxisX"), Input.GetAxis("Joystick2AxisY")));
+            transform.Translate(Input.GetAxis("Joystick2AxisX") * speed, Input.GetAxis("Joystick2AxisY") * speed, 0);
+
             if (Input.GetKey(KeyCode.D))
                 transform.Translate(translateSpeed * Time.deltaTime, 0, 0);
 

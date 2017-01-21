@@ -7,24 +7,30 @@ public class BulletMovement : MonoBehaviour {
     public float movementSpeed = 5;
     public float outOfBoundsDistance = 25;
     public Vector2 movementDelta;
+    private PlayerLook playerLook;
 
 	// Use this for initialization
 	void Start () {
         OnEnable();
-	}
-
-    void Awake()
-    {
-
     }
 
     private void OnEnable()
     {
-        Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (gameObject.tag == "Bullets1")
+        {
+            playerLook = GameData.player1.GetComponent<PlayerLook>();
+        }
+        else if (gameObject.tag == "Bullets2")
+        {
+            playerLook = GameData.player2.GetComponent<PlayerLook>();
+        }
+        //Vector3 worldMousePos = transform.position + new Vector3(playerLook.lookVector.x, playerLook.lookVector.y, 0);
+
         //Debug.Log(transform.position);
         //Debug.Log(worldMousePos);
-        movementDelta = new Vector2(worldMousePos.x, worldMousePos.y) - new Vector2(transform.position.x, transform.position.y);
+        //movementDelta = new Vector2(worldMousePos.x, worldMousePos.y) - new Vector2(transform.position.x, transform.position.y);
         //Debug.Log(movementDelta);
+        movementDelta = playerLook.lookVector;
         movementDelta.Normalize();
     }
 
