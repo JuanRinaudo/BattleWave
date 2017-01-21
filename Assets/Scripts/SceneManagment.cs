@@ -9,6 +9,7 @@ public class SceneManagment : MonoBehaviour {
     {
         GameData.player1Lives = GameData.playerLives;
         GameData.player2Lives = GameData.playerLives;
+        GameData.gameRound = 0;
         SceneManager.LoadScene ("MainState");
 	}
 
