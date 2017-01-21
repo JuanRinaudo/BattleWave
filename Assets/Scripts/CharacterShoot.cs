@@ -23,10 +23,10 @@ public class CharacterShoot : MonoBehaviour {
         if(shootTimer <= 0)
         {
             GameObject bullet = getBullet();
-            bullet.active = true;
             bullet.transform.parent = bulletPool.transform;
             bullet.transform.position = shootPoint.transform.position;
             bullet.transform.eulerAngles = transform.eulerAngles;
+            bullet.active = true;
             shootTimer += timeToShoot;
         }
 	}
