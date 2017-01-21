@@ -12,7 +12,10 @@ public class BulletMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         OnEnable();
+    }
 
+    private void OnEnable()
+    {
         if (gameObject.tag == "Bullets1")
         {
             playerLook = GameData.player1.GetComponent<PlayerLook>();
@@ -21,10 +24,6 @@ public class BulletMovement : MonoBehaviour {
         {
             playerLook = GameData.player2.GetComponent<PlayerLook>();
         }
-    }
-
-    private void OnEnable()
-    {
         //Vector3 worldMousePos = transform.position + new Vector3(playerLook.lookVector.x, playerLook.lookVector.y, 0);
 
         //Debug.Log(transform.position);

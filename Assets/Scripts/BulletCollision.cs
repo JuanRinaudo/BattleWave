@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletCollision : MonoBehaviour {
 
     BulletMovement bulletMovement;
-    public int collisionHits = 5;
+    public int collisionHits = 4;
     [HideInInspector]
     public int hitCounter = 0;
 
@@ -23,69 +23,38 @@ public class BulletCollision : MonoBehaviour {
     {
         hitCounter = 0;
     }
-
-    void OnCollisionEnter2D(Collision2D collision)
+    
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Walls") {
-            CalculateNormal calculateNormal = collision.gameObject.GetComponent<CalculateNormal>();
-            bulletMovement.movementDelta = (2 * Vector2.Dot(bulletMovement.movementDelta, calculateNormal.normal) * calculateNormal.normal) - bulletMovement.movementDelta;
-
-            hitCounter++;
-            if (hitCounter > collisionHits)
-            {
-                gameObject.SetActive(false);
-            }
+            reflectCollision(collision);
         }
         if (this.gameObject.tag == "Bullets1")
         {
-            if (collision.gameObject.tag == "Shield2")
+            if (collision.gameObject.tag == "Shield2" || ((collision.gameObject.tag == "Shield1") && (hitCounter != 0)))
             {
-                CalculateNormal calculateNormal = collision.gameObject.GetComponent<CalculateNormal>();
-                bulletMovement.movementDelta = (2 * Vector2.Dot(bulletMovement.movementDelta, calculateNormal.normal) * calculateNormal.normal) - bulletMovement.movementDelta;
-
-                hitCounter++;
-                if (hitCounter > collisionHits)
-                {
-                    gameObject.SetActive(false);
-                }
-            }
-            if ((collision.gameObject.tag == "Shield1") && (hitCounter != 0))
-            {
-                CalculateNormal calculateNormal = collision.gameObject.GetComponent<CalculateNormal>();
-                bulletMovement.movementDelta = (2 * Vector2.Dot(bulletMovement.movementDelta, calculateNormal.normal) * calculateNormal.normal) - bulletMovement.movementDelta;
-
-                hitCounter++;
-                if (hitCounter > collisionHits)
-                {
-                    gameObject.SetActive(false);
-                }
+                reflectCollision(collision);
             }
         }
         if (this.gameObject.tag == "Bullets2")
         {
-            if (collision.gameObject.tag == "Shield1")
+            if (collision.gameObject.tag == "Shield1" || ((collision.gameObject.tag == "Shield2") && (hitCounter != 0)))
             {
-                CalculateNormal calculateNormal = collision.gameObject.GetComponent<CalculateNormal>();
-                bulletMovement.movementDelta = (2 * Vector2.Dot(bulletMovement.movementDelta, calculateNormal.normal) * calculateNormal.normal) - bulletMovement.movementDelta;
-
-                hitCounter++;
-                if (hitCounter > collisionHits)
-                {
-                    gameObject.SetActive(false);
-                }
-            }
-            if ((collision.gameObject.tag == "Shield2") && (hitCounter != 0))
-            {
-                CalculateNormal calculateNormal = collision.gameObject.GetComponent<CalculateNormal>();
-                bulletMovement.movementDelta = (2 * Vector2.Dot(bulletMovement.movementDelta, calculateNormal.normal) * calculateNormal.normal) - bulletMovement.movementDelta;
-
-                hitCounter++;
-                if (hitCounter > collisionHits)
-                {
-                    gameObject.SetActive(false);
-                }
+                reflectCollision(collision);
             }
         }
 
+        if (hitCounter > collisionHits)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    void reflectCollision(Collider2D collision)
+    {
+        CalculateNormal calculateNormal = collision.gameObject.GetComponent<CalculateNormal>();
+        bulletMovement.movementDelta = (2 * Vector2.Dot(bulletMovement.movementDelta, calculateNormal.normal) * calculateNormal.normal) - bulletMovement.movementDelta;
+
+        hitCounter++;
     }
 }

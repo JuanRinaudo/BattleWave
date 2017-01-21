@@ -14,20 +14,20 @@ public class PlayerCollisions : MonoBehaviour {
 		
 	}
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Bullets2" || collision.gameObject.tag == "Bullets1")
         {
-            //BulletCollision bulletCollision = collision.gameObject.GetComponent<BulletCollision>();
-            //if(bulletCollision.hitCounter == 0) {
-            //    if (gameObject.tag == "Player1" && collision.gameObject.tag == "Bullets1") { return; }
-            //    if (gameObject.tag == "Player2" && collision.gameObject.tag == "Bullets2") { return; }
-            //}
+            BulletCollision bulletCollision = collision.gameObject.GetComponent<BulletCollision>();
+            if(bulletCollision.hitCounter == 0) {
+                if (gameObject.tag == "Player1" && collision.gameObject.tag == "Bullets1") { return; }
+                if (gameObject.tag == "Player2" && collision.gameObject.tag == "Bullets2") { return; }
+            }
 
-            //Destroy(gameObject);
+            Destroy(gameObject);
 
-            //if (gameObject.tag == "Player1") { GameManager.instance.onPlayer1Death(); }
-            //if (gameObject.tag == "Player2") { GameManager.instance.onPlayer2Death(); }
+            if (gameObject.tag == "Player1") { GameManager.instance.onPlayer1Death(); }
+            if (gameObject.tag == "Player2") { GameManager.instance.onPlayer2Death(); }
         }
     }
 }
