@@ -7,9 +7,12 @@ public class PlayerMovement : MonoBehaviour {
 	public float translateSpeed;
     public int player = 0;
 
+	private Animator playerAnim;
+
 	// Use this for initialization
 	void Start () {
-		
+
+		playerAnim = GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -18,8 +21,26 @@ public class PlayerMovement : MonoBehaviour {
         float speed = translateSpeed * Time.deltaTime;
         if (player == 1)
         {
+
+			Vector3 movement = new Vector3(Input.GetAxis("Joystick1AxisX") * speed, Input.GetAxis("Joystick1AxisY") * speed, 0);
             //Debug.Log("JOYSTICK1: " + new Vector2(Input.GetAxis("Joystick1AxisX"), Input.GetAxis("Joystick1AxisY")));
-            transform.Translate(Input.GetAxis("Joystick1AxisX") * speed, Input.GetAxis("Joystick1AxisY") * speed, 0);
+			transform.Translate(movement);
+
+			Vector3 scale = transform.localScale;
+
+			if (Input.GetAxis("Joystick1Axis3") < 0)
+				scale.x = -1;
+			else
+				scale.x = 1;
+
+			transform.localScale = scale;
+
+
+			if (movement.magnitude >= 0)
+				playerAnim.SetBool ("HumanWalk", true);
+			else {
+				playerAnim.SetBool ("HumanWalk", false);
+			}
 
             if (Input.GetKey("right"))
                 transform.Translate(translateSpeed * Time.deltaTime, 0, 0);
