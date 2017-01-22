@@ -19,6 +19,6 @@ public class player2showRounds : MonoBehaviour
     void Update()
     {
 
-        roundsWon.text = "Player2 Wins: " + GameData.player2RoundWins.ToString();
+        roundsWon.text = "Lives : " + GameData.player2Lives.ToString();
     }
 }

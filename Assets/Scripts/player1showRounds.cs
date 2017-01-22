@@ -16,6 +16,6 @@ public class player1showRounds : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        roundsWon.text = "Player1 Wins: " + GameData.player1RoundWins.ToString();
+        roundsWon.text = "Lives: " + GameData.player1Lives.ToString();
 	}
 }

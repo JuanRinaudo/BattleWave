@@ -7,12 +7,16 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
-
-    public Text player1WinText;
-    public Text player2WinText;
+    public Text playerWin;
+    public Button resetButton;
 
     // Use this for initialization
     void Start () {
+
+        resetButton.gameObject.SetActive(false);
+
+        playerWin.text = "";
+
         instance = this;
 
         GameData.gameStartTimer = 3;
@@ -33,13 +37,19 @@ public class GameManager : MonoBehaviour {
                 GameData.gameRunning = true;
             }
         }
+
+        if (GameData.player1Lives == 0 || GameData.player2Lives == 0)
+        {
+            Time.timeScale = 0;
+        }
+        else
+            Time.timeScale = 1;
 	}
 
     public void onPlayer1Death()
     {
         GameData.player2Won = true;
         GameData.player1Lives--;
-        GameData.player2RoundWins++;
         tryToResetStage();
     }
 
@@ -47,14 +57,11 @@ public class GameManager : MonoBehaviour {
     {
         GameData.player1Won = true;
         GameData.player2Lives--;
-        GameData.player1RoundWins++;
         tryToResetStage();
     }
 
     private void tryToResetStage()
     {
-        Debug.Log(GameData.player1Lives);
-        Debug.Log(GameData.player2Lives);
 
         if (GameData.player1Lives > 0 && GameData.player2Lives > 0)
         {
@@ -66,13 +73,12 @@ public class GameManager : MonoBehaviour {
         } else
         {
             if (GameData.player1Lives == 0) 
-                player2WinText.text = "Player2 Wins!";
+                playerWin.text = "Player2 Wins!";
             else if (GameData.player2Lives == 0) 
-                player1WinText.text = "Player1 Wins!";
+                playerWin.text = "Player1 Wins!";
 
-                GameData.player1RoundWins = 0;
-            GameData.player2RoundWins = 0;
-            SceneManager.LoadScene(0, LoadSceneMode.Single);
+            resetButton.gameObject.SetActive(true);
+
         }
     }
 }
