@@ -13,8 +13,12 @@ public class Pause : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-		if(Input.GetButtonDown("Pause") || Input.GetButtonDown("Pause2"))
+
+		Time.timeScale = 0;
+
+		/*
+
+		if(Input.GetButtonDown("Pause") || Input.GetButtonDown("Pause2") || Input.GetKey("space"))
 		{
 			if(pause == false){
 			Time.timeScale = 0;
@@ -23,8 +27,8 @@ public class Pause : MonoBehaviour {
 			else{
 				Time.timeScale = 1;
 				pause = false;
-				}
-		}
+			}
+		}*/
 	}
 
 	public void setPause(){
