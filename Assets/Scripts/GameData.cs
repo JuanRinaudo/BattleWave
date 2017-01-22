@@ -24,6 +24,9 @@ public class GameData : MonoBehaviour {
     public static bool gameRunning;
     public static float gameStartTimer;
 
+    public static float player1ShieldTime;
+    public static float player2ShieldTime;
+
     public static void resetData()
     {
         GameData.player1Lives = GameData.playerLives;

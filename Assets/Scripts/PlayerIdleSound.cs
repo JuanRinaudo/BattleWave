@@ -9,10 +9,15 @@ public class PlayerIdleSound : MonoBehaviour {
     public float baseTime = 3;
     public float randomTime = 4;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    private void Awake()
+    {
+        soundTimer += baseTime + Random.Range(0, randomTime);
+    }
+
+    // Use this for initialization
+    void Start () {
+
+    }
 	
 	// Update is called once per frame
 	void Update () {

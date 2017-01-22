@@ -11,6 +11,8 @@ public class CharacterShoot : MonoBehaviour {
     public float timeToShoot;
     private float shootTimer;
 
+    public AudioSource[] gunSounds;
+
 	// Use this for initialization
 	void Start () {
         poolBullets = new List<GameObject>();
@@ -28,6 +30,11 @@ public class CharacterShoot : MonoBehaviour {
                 bullet.transform.eulerAngles = transform.eulerAngles;
                 bullet.GetComponent<BulletCollision>().ResetHits();
                 bullet.active = true;
+
+                if(gunSounds.Length > 0) {
+                    gunSounds[Random.Range(0, gunSounds.Length)].Play();
+                }
+
                 shootTimer += timeToShoot;
             }
         }

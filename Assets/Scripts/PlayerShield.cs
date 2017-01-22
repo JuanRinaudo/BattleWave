@@ -22,6 +22,15 @@ public class PlayerShield : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        if (gameObject.tag == "Player1")
+        {
+            GameData.player1ShieldTime = delayTime;
+        }
+        else if (gameObject.tag == "Player2")
+        {
+            GameData.player2ShieldTime = delayTime;
+        }
+
         if (!shieldCooldown)
         {
             if (gameObject.tag == "Player1")
@@ -61,7 +70,15 @@ public class PlayerShield : MonoBehaviour
                     shieldActivated = false;
                     shieldObject.SetActive(false);
                     shieldCooldown = true;
-                    delayTime = cooldownTime; 
+                    delayTime = cooldownTime;
+                    if (gameObject.tag == "Player1")
+                    {
+                        playerLook = GameData.player1.GetComponent<PlayerLook>();
+                    }
+                    else if (gameObject.tag == "Player2")
+                    {
+                        playerLook = GameData.player2.GetComponent<PlayerLook>();
+                    }
                 }
             }
         }
