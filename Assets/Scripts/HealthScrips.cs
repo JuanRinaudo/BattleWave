@@ -22,7 +22,7 @@ public class HealthScrips : MonoBehaviour {
 		if(player == 2)
 			fill = GameData.player2Health;
 		Vector3 scale = content.rectTransform.localScale;
-		scale.x = map(fill,0,3,0,1);
+		scale.x = map(fill,0,GameData.healthMax,0,1);
 		content.rectTransform.localScale = scale;
 	}
 

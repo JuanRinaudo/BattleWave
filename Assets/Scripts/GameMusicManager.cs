@@ -21,7 +21,7 @@ public class GameMusicManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if ((GameData.player1Health <= 1 || GameData.player2Health <= 1) && !battle_fast_intro.isPlaying)
+        if ((GameData.player1Health <= 3 || GameData.player2Health <= 3) && !battle_fast_intro.isPlaying)
         {
             if((battle_loop.isPlaying || battle_intro.isPlaying) && !battle_fast_loop.isPlaying) {
                 battle_loop.Stop();

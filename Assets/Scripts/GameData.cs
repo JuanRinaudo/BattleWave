@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameData : MonoBehaviour {
 
+	public const int healthMax = 10;
+
     public static GameObject player1;
     public static GameObject player2;
 
@@ -12,8 +14,8 @@ public class GameData : MonoBehaviour {
     public static int player2Lives = 4;
     public static int playerLives = 4;
 
-    public static int player1Health = 3;
-	public static int player2Health = 3;
+	public static int player1Health = healthMax;
+	public static int player2Health = healthMax;
 
 	public static float time;
 
@@ -37,8 +39,8 @@ public class GameData : MonoBehaviour {
 
     public static void resetHealth()
     {
-        GameData.player2Health = 3;
-        GameData.player1Health = 3;
+		GameData.player2Health = healthMax;
+		GameData.player1Health = healthMax;
     }
 
 }
