@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerCollisions : MonoBehaviour {
 
+    public AudioSource[] hitSounds;
+
+
 	// Use this for initialization
 	void Start () {
 		
@@ -33,6 +36,8 @@ public class PlayerCollisions : MonoBehaviour {
 
             if (gameObject.tag == "Player1") { life = GameData.player1Health; }
             else { life = GameData.player2Health; }
+
+            hitSounds[Random.Range(0, hitSounds.Length)].Play();
 
             if (life == 0)
             {
