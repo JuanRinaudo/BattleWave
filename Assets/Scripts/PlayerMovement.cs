@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	public Animator playerAnim;
     public GameObject playerObject;
+    public PlayerLook playerLook;
 
 	// Use this for initialization
 	void Start () {
@@ -28,7 +29,7 @@ public class PlayerMovement : MonoBehaviour {
 
 			Vector3 scale1 = playerObject.transform.localScale;
 
-			if (Input.GetAxis("Joystick1Axis3") < 0)
+			if (playerLook.lookVector.x < 0)
 				scale1.x = -1;
 			else
 				scale1.x = 1;
@@ -60,10 +61,10 @@ public class PlayerMovement : MonoBehaviour {
 
             Vector3 scale1 = playerObject.transform.localScale;
 
-            if (Input.GetAxis("Joystick1Axis3") < 0)
-                scale1.x = 1;
-            else
+            if (playerLook.lookVector.x < 0)
                 scale1.x = -1;
+            else
+                scale1.x = 1;
 
             playerObject.transform.localScale = scale1;
 

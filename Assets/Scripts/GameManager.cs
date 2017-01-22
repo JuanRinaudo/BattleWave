@@ -65,9 +65,8 @@ public class GameManager : MonoBehaviour {
 
         if (GameData.player1Lives > 0 && GameData.player2Lives > 0)
         {
+            GameData.resetHealth();
             GameData.gameRound++;
-			GameData.player1Health = 3;
-			GameData.player2Health = 3;
             int scene = SceneManager.GetActiveScene().buildIndex;
             SceneManager.LoadScene(scene, LoadSceneMode.Single);
         } else

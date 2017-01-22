@@ -27,6 +27,7 @@ public class selectionUI : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown("space") && ind==0){
+            GameData.resetData();
 			SceneManager.LoadScene ("MainState");
 		}
 

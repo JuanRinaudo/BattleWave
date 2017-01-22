@@ -7,12 +7,7 @@ public class SceneManagment : MonoBehaviour {
 
 	public void loadMenu()
     {
-        GameData.player1Lives = GameData.playerLives;
-        GameData.player2Lives = GameData.playerLives;
-		GameData.player2Health = 3;
-		GameData.player1Health = 3;
-
-        GameData.gameRound = 0;
+        GameData.resetData();
         SceneManager.LoadScene ("MainState");
 	}
 
