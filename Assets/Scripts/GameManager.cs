@@ -8,12 +8,12 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
     public Text playerWin;
-    public Button resetButton;
+	public Canvas resetMenu;
 
     // Use this for initialization
     void Start () {
 
-        resetButton.gameObject.SetActive(false);
+		resetMenu.gameObject.SetActive (false);
 
         playerWin.text = "";
 
@@ -72,12 +72,11 @@ public class GameManager : MonoBehaviour {
         } else
         {
             if (GameData.player1Lives == 0) 
-                playerWin.text = "Player2 Wins!";
+                playerWin.text = "Horkur Wins!";
             else if (GameData.player2Lives == 0) 
-                playerWin.text = "Player1 Wins!";
+                playerWin.text = "Carlito Wins!";
 
-            resetButton.gameObject.SetActive(true);
-
+			resetMenu.gameObject.SetActive (true);
         }
     }
 }

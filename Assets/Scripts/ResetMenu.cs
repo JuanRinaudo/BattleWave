@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class selectionUI : MonoBehaviour {
+public class ResetMenu : MonoBehaviour {
 
 	private int ind; //0,1,2//
 
@@ -15,7 +15,7 @@ public class selectionUI : MonoBehaviour {
 	void Start () {
 		ind = 0;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 
@@ -24,7 +24,11 @@ public class selectionUI : MonoBehaviour {
 			lastValue = Input.GetAxis ("Joystick1AxisY");
 		}
 
+		if (lastValue < 0 && Input.GetAxis ("Joystick1AxisY") == 0 && ind < 1) {
 
+			ind++;
+			transform.Translate(0,-indMultiplier, 0);
+		}
 
 		if (lastValue > 0 && Input.GetAxis ("Joystick1AxisY") == 0 && ind > 0) {
 
@@ -32,29 +36,17 @@ public class selectionUI : MonoBehaviour {
 			transform.Translate(0,indMultiplier, 0);
 		}
 
-		if (lastValue < 0 && Input.GetAxis ("Joystick1AxisY") == 0 && ind < 2) {
-
-			ind++;
-			transform.Translate(0,-indMultiplier, 0);
-		}
-
 		if (lastValue != 0 && Input.GetAxis ("Joystick1AxisY") == 0)
 			lastValue = 0;
 
-
 		if (Input.GetButton("Joystick1A") && ind==0){
-            GameData.resetData();
+			GameData.resetData();
 			SceneManager.LoadScene ("MainState");
 		}
 
 		if (Input.GetButton("Joystick1A") && ind==1){
-			SceneManager.LoadScene ("CreditsState");
+			GameData.resetData();
+			SceneManager.LoadScene(0, LoadSceneMode.Single);
 		}
-
-		if (Input.GetButton("Joystick1A") && ind==2){
-			Application.Quit ();
-			Debug.Log ("Quit");
-		}
-
 	}
 }
