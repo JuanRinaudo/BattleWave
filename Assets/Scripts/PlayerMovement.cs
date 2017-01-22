@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+		  
 		playerAnim = GetComponent<Animator> ();
 	}
 	
@@ -22,24 +22,23 @@ public class PlayerMovement : MonoBehaviour {
         if (player == 1)
         {
 
-			Vector3 movement = new Vector3(Input.GetAxis("Joystick1AxisX") * speed, Input.GetAxis("Joystick1AxisY") * speed, 0);
+			Vector3 movement1 = new Vector3(Input.GetAxis("Joystick1AxisX") * speed, Input.GetAxis("Joystick1AxisY") * speed, 0);
             //Debug.Log("JOYSTICK1: " + new Vector2(Input.GetAxis("Joystick1AxisX"), Input.GetAxis("Joystick1AxisY")));
-			transform.Translate(movement);
+			transform.Translate(movement1);
 
-			Vector3 scale = transform.localScale;
+			Vector3 scale1 = transform.localScale;
 
 			if (Input.GetAxis("Joystick1Axis3") < 0)
-				scale.x = -1;
+				scale1.x = -1;
 			else
-				scale.x = 1;
+				scale1.x = 1;
 
-			transform.localScale = scale;
+			transform.localScale = scale1;
 
-
-			if (movement.magnitude >= 0)
-				playerAnim.SetBool ("HumanWalk", true);
+			if (movement1.magnitude > 0)
+				playerAnim.SetBool ("Walk", true);
 			else {
-				playerAnim.SetBool ("HumanWalk", false);
+				playerAnim.SetBool ("Walk", false);
 			}
 
             if (Input.GetKey("right"))
@@ -55,8 +54,26 @@ public class PlayerMovement : MonoBehaviour {
                 transform.Translate(0, -translateSpeed * Time.deltaTime, 0);
     } else
         {
+			Vector3 movement2 = new Vector3(Input.GetAxis("Joystick2AxisX") * speed, Input.GetAxis("Joystick2AxisY") * speed, 0);
             //Debug.Log("JOYSTICK2: " + new Vector2(Input.GetAxis("Joystick2AxisX"), Input.GetAxis("Joystick2AxisY")));
-            transform.Translate(Input.GetAxis("Joystick2AxisX") * speed, Input.GetAxis("Joystick2AxisY") * speed, 0);
+			transform.Translate(movement2);
+
+			Vector3 scale2 = transform.localScale;
+
+			if (Input.GetAxis("Joystick2Axis3") > 0)
+				scale2.x = -1;
+			else
+				scale2.x = 1;
+
+			transform.localScale = scale2;
+
+			if (movement2.magnitude > 0.05f)
+				playerAnim.SetBool ("Walk", true);
+			else {
+				playerAnim.SetBool ("Walk", false);
+			}
+
+			Debug.Log (movement2.magnitude);
 
             if (Input.GetKey(KeyCode.D))
                 transform.Translate(translateSpeed * Time.deltaTime, 0, 0);
