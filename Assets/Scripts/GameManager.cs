@@ -37,6 +37,11 @@ public class GameManager : MonoBehaviour {
                 GameData.gameRunning = true;
             }
         }
+
+        if (GameData.player1Lives == 0 || GameData.player2Lives == 0)
+        {
+            Time.timeScale = 0;
+        }
 	}
 
     public void onPlayer1Death()
@@ -65,7 +70,6 @@ public class GameManager : MonoBehaviour {
             SceneManager.LoadScene(scene, LoadSceneMode.Single);
         } else
         {
-
             if (GameData.player1Lives == 0) 
                 playerWin.text = "Player2 Wins!";
             else if (GameData.player2Lives == 0) 

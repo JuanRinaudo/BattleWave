@@ -36,7 +36,7 @@ public class PlayerCollisions : MonoBehaviour {
 
             if (life == 0)
             {
-                Destroy(gameObject);
+                gameObject.SetActive(false);
                 if (gameObject.tag == "Player1") { GameManager.instance.onPlayer1Death(); }
                 if (gameObject.tag == "Player2") { GameManager.instance.onPlayer2Death(); }
             }
