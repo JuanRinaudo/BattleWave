@@ -16,11 +16,13 @@ public class PlayerIdleSound : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        soundTimer -= Time.deltaTime;
-        if(soundTimer < 0)
-        {
-            idleSounds[Random.Range(0, idleSounds.Length)].Play();
-            soundTimer += baseTime + Random.Range(0, randomTime);
+        if(idleSounds.Length > 0) {
+            soundTimer -= Time.deltaTime;
+            if(soundTimer < 0)
+            {
+                idleSounds[Random.Range(0, idleSounds.Length)].Play();
+                soundTimer += baseTime + Random.Range(0, randomTime);
+            }
         }
-	}
+    }
 }

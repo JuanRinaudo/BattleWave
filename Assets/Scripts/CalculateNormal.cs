@@ -9,12 +9,13 @@ public class CalculateNormal : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        normal = transform.position - normalObject.transform.position;
-        normal.Normalize();
+
 	}
 	
 	// Update is called once per frame
-	void Update () {
-
+	void Update ()
+    {
+        normal = transform.position - normalObject.transform.position;
+        normal.Normalize();
     }
 }
