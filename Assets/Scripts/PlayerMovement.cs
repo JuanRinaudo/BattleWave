@@ -7,12 +7,12 @@ public class PlayerMovement : MonoBehaviour {
 	public float translateSpeed;
     public int player = 0;
 
-	private Animator playerAnim;
+	public Animator playerAnim;
+    public GameObject playerObject;
 
 	// Use this for initialization
 	void Start () {
-		  
-		playerAnim = GetComponent<Animator> ();
+
 	}
 	
 	// Update is called once per frame
@@ -26,14 +26,14 @@ public class PlayerMovement : MonoBehaviour {
             //Debug.Log("JOYSTICK1: " + new Vector2(Input.GetAxis("Joystick1AxisX"), Input.GetAxis("Joystick1AxisY")));
 			transform.Translate(movement1);
 
-			Vector3 scale1 = transform.localScale;
+			Vector3 scale1 = playerObject.transform.localScale;
 
 			if (Input.GetAxis("Joystick1Axis3") < 0)
 				scale1.x = -1;
 			else
 				scale1.x = 1;
 
-			transform.localScale = scale1;
+            playerObject.transform.localScale = scale1;
 
 			if (movement1.magnitude > 0)
 				playerAnim.SetBool ("Walk", true);
@@ -58,16 +58,16 @@ public class PlayerMovement : MonoBehaviour {
             //Debug.Log("JOYSTICK2: " + new Vector2(Input.GetAxis("Joystick2AxisX"), Input.GetAxis("Joystick2AxisY")));
 			transform.Translate(movement2);
 
-			Vector3 scale2 = transform.localScale;
+            Vector3 scale1 = playerObject.transform.localScale;
 
-			if (Input.GetAxis("Joystick2Axis3") > 0)
-				scale2.x = -1;
-			else
-				scale2.x = 1;
+            if (Input.GetAxis("Joystick1Axis3") < 0)
+                scale1.x = 1;
+            else
+                scale1.x = -1;
 
-			transform.localScale = scale2;
+            playerObject.transform.localScale = scale1;
 
-			if (movement2.magnitude > 0.05f)
+            if (movement2.magnitude > 0.05f)
 				playerAnim.SetBool ("Walk", true);
 			else {
 				playerAnim.SetBool ("Walk", false);

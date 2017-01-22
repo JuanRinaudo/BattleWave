@@ -24,7 +24,6 @@ public class PlayerShield : MonoBehaviour
     {
         if (!shieldCooldown)
         {
-            float angleDelta = 0;
             if (gameObject.tag == "Player1")
             {
                 playerLook = GameData.player1.GetComponent<PlayerLook>();
@@ -32,11 +31,10 @@ public class PlayerShield : MonoBehaviour
             else if (gameObject.tag == "Player2")
             {
                 playerLook = GameData.player2.GetComponent<PlayerLook>();
-                angleDelta = 180;
             }
 
             Vector3 delta = playerLook.lookVector;
-            shieldContainer.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Atan2(delta.y, delta.x) * Mathf.Rad2Deg + angleDelta));
+            shieldContainer.transform.rotation = Quaternion.Euler(new Vector3(0, 0, Mathf.Atan2(delta.y, delta.x) * Mathf.Rad2Deg));
             if (player == 1)
             {
                 if ((Input.GetKey(KeyCode.Comma) || Input.GetButton("Joystick1Shield")) && (!shieldActivated))
