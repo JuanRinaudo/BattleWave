@@ -8,6 +8,7 @@ public class BulletCollision : MonoBehaviour {
     public int collisionHits = 4;
     [HideInInspector]
     public int hitCounter = 0;
+    private bool hasHitted = false;
 
 	// Use this for initialization
 	void Start () {
@@ -16,8 +17,8 @@ public class BulletCollision : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        hasHitted = false;
+    }
 
     public void ResetHits()
     {
@@ -26,28 +27,30 @@ public class BulletCollision : MonoBehaviour {
     
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Walls") {
-            reflectCollision(collision);
-        }
-
-        if (this.gameObject.tag == "Bullets1")
-        {
-            if (collision.gameObject.tag == "Shield2" || ((collision.gameObject.tag == "Shield1") && (hitCounter != 0)))
-            {
+        if(!hasHitted) {
+            if(collision.gameObject.tag == "Walls") {
                 reflectCollision(collision);
             }
-        }
-        if (this.gameObject.tag == "Bullets2")
-        {
-            if (collision.gameObject.tag == "Shield1" || ((collision.gameObject.tag == "Shield2") && (hitCounter != 0)))
-            {
-                reflectCollision(collision);
-            }
-        }
 
-        if (hitCounter > collisionHits)
-        {
-            gameObject.SetActive(false);
+            if (this.gameObject.tag == "Bullets1")
+            {
+                if (collision.gameObject.tag == "Shield2" || ((collision.gameObject.tag == "Shield1") && (hitCounter != 0)))
+                {
+                    reflectCollision(collision);
+                }
+            }
+            if (this.gameObject.tag == "Bullets2")
+            {
+                if (collision.gameObject.tag == "Shield1" || ((collision.gameObject.tag == "Shield2") && (hitCounter != 0)))
+                {
+                    reflectCollision(collision);
+                }
+            }
+
+            if (hitCounter > collisionHits)
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 
@@ -57,5 +60,6 @@ public class BulletCollision : MonoBehaviour {
         bulletMovement.movementDelta = (2 * Vector2.Dot(bulletMovement.movementDelta, calculateNormal.normal) * calculateNormal.normal) - bulletMovement.movementDelta;
 
         hitCounter++;
+        hasHitted = true;
     }
 }
