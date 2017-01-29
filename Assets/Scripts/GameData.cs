@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameData : MonoBehaviour {
 
-	public const int healthMax = 10;
+	public const int healthMax = 2;
 
     public static GameObject player1;
     public static GameObject player2;
